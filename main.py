@@ -1,16 +1,25 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+import time
+from WeatherParser import WeatherParser
+from WeatherPreprocessor import WeatherPreprocessor
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+if __name__ == "__main__":
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    parser = WeatherParser(
+        station_ids=[34880, 34214],
+        start_date="31.12.2018",
+        end_date="01.09.2021",
+    )
+    parser.get_weather_files()
+    time.sleep(1)
+
+    preprocessor = WeatherPreprocessor(
+        parser=parser,
+        merge_type='weeks',
+        save_path='/Users/polinariabar/Downloads/',
+        downloads_path='/Users/polinariabar/Downloads/',
+        dates_list_path='/Users/polinariabar/DS/RP5_weather_parcer/data/dates.xlsx'
+    )
+    preprocessor.create_unit_file()
+    preprocessor.final_day_df.to_excel('/Users/polinariabar/Weather_Test_Day.xlsx', index=False)
+    preprocessor.final_week_df.to_excel('/Users/polinariabar/Weather_Test_Week.xlsx', index=False)
