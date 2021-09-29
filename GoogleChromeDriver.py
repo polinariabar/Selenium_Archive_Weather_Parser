@@ -26,13 +26,11 @@ class GoogleChromeDriver:
         variant.click()
 
     def change_start_date(self, str_date):
-        if str_date != 0:
-            date = self.driver.find_element_by_id("calender_dload")
+        date = self.driver.find_element_by_id("calender_dload")
         self.change_date(date, str_date)
 
     def change_end_date(self, str_date):
-        if str_date != 0:
-            date = self.driver.find_element_by_id("calender_dload2")
+        date = self.driver.find_element_by_id("calender_dload2")
         self.change_date(date, str_date)
 
     def change_date(self, date, str_date):

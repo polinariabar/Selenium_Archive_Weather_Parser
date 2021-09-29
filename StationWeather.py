@@ -2,9 +2,6 @@ from GoogleChromeDriver import GoogleChromeDriver
 import time
 
 
-
-
-
 class StationWeather:
 
     def __init__(self, station_id: int, start_date, end_date, driver: GoogleChromeDriver):
@@ -45,5 +42,3 @@ class StationWeather:
         if done is False:
             print("ERROR: Can not download such station:", self.id)
         return done
-
-
